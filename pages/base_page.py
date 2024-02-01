@@ -17,3 +17,7 @@ class BasePage:
         except NoSuchElementException:
             return False
         return True
+
+    def is_url_correct(self, url):
+        sub_string_url = url.split('/')[-2]
+        return sub_string_url
