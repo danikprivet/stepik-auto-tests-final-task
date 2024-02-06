@@ -1,6 +1,5 @@
 from .base_page import BasePage
 from .locators import BookPageLocators
-from selenium.webdriver.common.by import By
 
 
 class BookPage(BasePage):
