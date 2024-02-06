@@ -9,16 +9,12 @@ class BookPage(BasePage):
         self.browser.find_element(*BookPageLocators.ADD_TO_BASKET_BUTTON).click()
 
     def name_of_added_book_should_be_right(self):
-        element = self.is_element_present(By.XPATH,
-                                          '//div[@class = "alert alert-safe alert-noicon alert-success  fade in"][1]')
-        if element:
-            text = self.browser.find_element(By.XPATH,
-                                             '//div[@class = "alert alert-safe alert-noicon alert-success  fade in"][1]').text
-            assert text.__contains__("The shellcoder's handbook"), "Text didn't match"
+        book_name_in_msg = self.is_element_present(*BookPageLocators.BOOK_NAME_IN_MSG)
+        if book_name_in_msg:
+            book_name_text_in_msg = self.browser.find_element(*BookPageLocators.BOOK_NAME_IN_MSG).text
+            assert book_name_text_in_msg.__contains__("The shellcoder's handbook"), "Text didn't match"
 
     def price_should_be_equal_to_the_cart(self):
-        element = self.is_element_present(By.CLASS_NAME,
-                                          'basket-mini pull-right hidden-xs')
-        if element:
-            text = self.browser.find_element(By.CLASS_NAME, 'basket-mini pull-right hidden-xs')
-            assert text.__contains__("9,99"), "Text didn't match"
+        cart_price = self.is_element_present(*BookPageLocators.CART_PRICE)
+        if cart_price:
+            assert cart_price.__contains__("9,99"), "Text didn't match"
